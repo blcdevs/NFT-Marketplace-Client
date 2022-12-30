@@ -9,8 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@web3modal/react": "^2.0.0-rc.1",
+    "axios": "^1.2.1",
+    "ethers": "^5.7.2",
+    "framer-motion": "^7.10.2",
+    "ipfs-http-client": "^59.0.0",
     "next": "13.0.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-icons": "^4.7.1"
   }
 }

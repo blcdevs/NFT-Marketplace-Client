@@ -1,0 +1,73 @@
+
+
+.NFTDetailsPage{
+    width: 100%;
+    margin-block: 5rem;
+}
+
+.NFTDetailsPage_box{
+    width: 80%;
+    margin:  0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+}
+
+@media screen and (min-device-width: 280px) and (max-device-width: 768px) {
+    .NFTDetailsPage{
+        width: 90%;
+    }
+    
+    .NFTDetailsPage_box{
+        margin:  0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 820px) {
+    .NFTDetailsPage{
+        width: 90%;
+    }
+
+    .NFTDetailsPage_box{
+        width: 80%;
+        /* width: 90%; */
+        display: grid;
+        margin:  0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media screen and (min-device-width: 820px) and (max-device-width: 913px) {
+    .NFTDetailsPage{
+        width: 100%;
+    }
+
+    .NFTDetailsPage_box{
+        width: 80%;
+        /* width: 90%; */
+        display: grid;
+        margin:  0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media screen and (min-device-width: 913px) and (max-device-width: 1440px) {
+    .NFTDetailsPage{
+        width: 100%;
+    }
+
+    .NFTDetailsPage_box{
+    width: 90%;
+    margin:  0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+    }
+
+}
