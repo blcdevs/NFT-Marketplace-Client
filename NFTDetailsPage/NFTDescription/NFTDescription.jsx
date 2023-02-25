@@ -8,7 +8,6 @@ import {
   MdTimer,
   MdReportProblem,
   MdOutlineDeleteSweep,
-  MdListAlt,
 } from "react-icons/md";
 import { BsThreeDots } from "react-icons/bs";
 import { FaWallet, FaPercentage } from "react-icons/fa";
@@ -28,7 +27,7 @@ import { Button } from "../../components/componentsindex.js";
 import { NFTTabs } from "../NFTDetailsIndex";
 
 //IMPORT SMART CONTRACT
-// import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
+import { NFTMarketplaceContext } from "../../Context/NFTMarketplaceContext";
 
 const NFTDescription = ({ nft }) => {
   const [social, setSocial] = useState(false);
@@ -104,12 +103,13 @@ const NFTDescription = ({ nft }) => {
     }
   };
 
+  //SMART CONTRACT DATA
+  const { buyNFT, currentAccount } = useContext(NFTMarketplaceContext);
 
   return (
     <div className={Style.NFTDescription}>
-        <div className={Style.NFTDescription_box}>
-         {/* //Part ONE */}
-
+      <div className={Style.NFTDescription_box}>
+        {/* //Part ONE */}
         <div className={Style.NFTDescription_box_share}>
           <p>Virtual Worlds</p>
           <div className={Style.NFTDescription_box_share_box}>
@@ -161,19 +161,13 @@ const NFTDescription = ({ nft }) => {
             )}
           </div>
         </div>
-        {/* End Part One */}
-
-            
-        
-         {/* //Part TWO */}
-         <div className={Style.NFTDescription_box_profile}>
+        {/* //Part TWO */}
+        <div className={Style.NFTDescription_box_profile}>
           <h1>
-            {/* {nft.name} #{nft.tokenId} */}
-              BearX #23456
+            {nft.name} #{nft.tokenId}
           </h1>
-          
           <div className={Style.NFTDescription_box_profile_box}>
-          <div className={Style.NFTDescription_box_profile_box_left}>
+            <div className={Style.NFTDescription_box_profile_box_left}>
               <Image
                 src={images.user1}
                 alt="profile"
@@ -183,11 +177,11 @@ const NFTDescription = ({ nft }) => {
               />
               <div className={Style.NFTDescription_box_profile_box_left_info}>
                 <small>Creator</small> <br />
-                {/* <Link href={{ pathname: "/author", query: `${nft.seller}` }}> */}
+                <Link href={{ pathname: "/author", query: `${nft.seller}` }}>
                   <span>
-                    Xxylox Kone <MdVerified />
+                    Karli Costa <MdVerified />
                   </span>
-                {/* </Link> */}
+                </Link>
               </div>
             </div>
 
@@ -207,8 +201,7 @@ const NFTDescription = ({ nft }) => {
                 </span>
               </div>
             </div>
-          </div>  
-
+          </div>
 
           <div className={Style.NFTDescription_box_profile_biding}>
             <p>
@@ -258,7 +251,7 @@ const NFTDescription = ({ nft }) => {
               >
                 <small>Current Bid</small>
                 <p>
-                1.500 ETH <span>( ≈ $3,221.22)</span>
+                  {nft.price} ETH <span>( ≈ $3,221.22)</span>
                 </p>
               </div>
 
@@ -266,25 +259,27 @@ const NFTDescription = ({ nft }) => {
             </div>
 
             <div className={Style.NFTDescription_box_profile_biding_box_button}>
-            {/* {currentAccount == nft.seller.toLowerCase() ? ( */}
+              {currentAccount == nft.seller.toLowerCase() ? (
                 <p>You can't buy your own NFT</p>
-              {/* ) : currentAccount == nft.owner.toLowerCase() ? ( */}
+              ) : currentAccount == nft.owner.toLowerCase() ? (
                 <Button
                   icon={<FaWallet />}
-                  btnName="Place a bid"
-                   handleClick={() =>
-                    
-                  {} } 
+                  btnName="List on Marketplace"
+                  handleClick={() =>
+                    router.push(
+                      `/reSellToken?id=${nft.tokenId}&tokenURI=${nft.tokenURI}&price=${nft.price}`
+                    )
+                  }
                   classStyle={Style.button}
                 />
-              {/* ) : ( */}
-                {/* <Button
+              ) : (
+                <Button
                   icon={<FaWallet />}
                   btnName="Buy NFT"
                   handleClick={() => buyNFT(nft)}
                   classStyle={Style.button}
-                /> */}
-              {/* )} */}
+                />
+              )}
 
               <Button
                 icon={<FaPercentage />}
@@ -293,7 +288,7 @@ const NFTDescription = ({ nft }) => {
                 classStyle={Style.button}
               />
             </div>
-            
+
             <div className={Style.NFTDescription_box_profile_biding_box_tabs}>
               <button onClick={(e) => openTabs(e)}>Bid History</button>
               <button onClick={(e) => openTabs(e)}>Provanance</button>
@@ -313,19 +308,14 @@ const NFTDescription = ({ nft }) => {
 
             {owner && (
               <div className={Style.NFTDescription_box_profile_biding_box_card}>
-                <NFTTabs dataTab={ownerArray} icon={<MdVerified />} />
+                <NFTTabs dataTab={ownerArray} icon={<MdVerified /> }/>
               </div>
             )}
-
-          </div>  
-        </div>  
-        
-      
-      {/* END PART TWO */}
-
+          </div>
         </div>
-    </div>    
-  )
-}
+      </div>
+    </div>
+  );
+};
 
-export default NFTDescription
+export default NFTDescription;

@@ -18,7 +18,7 @@ const FollowerTabCard = ({ el, i }) => {
     }
   };
   return (
-    <div className={Style.FollowerTabCard}>
+    <div key={i} className={Style.FollowerTabCard}>
       <div className={Style.FollowerTabCard_rank}>
         <p>
           #{i + 1} <span>🥇</span>

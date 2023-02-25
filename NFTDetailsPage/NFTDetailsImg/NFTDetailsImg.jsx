@@ -8,8 +8,7 @@ import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import Style from "./NFTDetailsImg.module.css";
 import images from "../../public/img";
 
-const NFTDetailsImg = (nft) => {
-
+const NFTDetailsImg = ({ nft }) => {
   const [description, setDescription] = useState(true);
   const [details, setDetails] = useState(true);
   const [like, setLike] = useState(false);
@@ -39,7 +38,7 @@ const NFTDetailsImg = (nft) => {
   };
 
   return (
-      <div className={Style.NFTDetailsImg}>
+    <div className={Style.NFTDetailsImg}>
       <div className={Style.NFTDetailsImg_box}>
         <div className={Style.NFTDetailsImg_box_NFT}>
           <div className={Style.NFTDetailsImg_box_NFT_like}>
@@ -60,7 +59,7 @@ const NFTDetailsImg = (nft) => {
 
           <div className={Style.NFTDetailsImg_box_NFT_img}>
             <Image
-              src={images.nft_image_1}
+              src={nft.image}
               className={Style.NFTDetailsImg_box_NFT_img_img}
               alt="NFT image"
               width={700}
@@ -80,11 +79,7 @@ const NFTDetailsImg = (nft) => {
 
         {description && (
           <div className={Style.NFTDetailsImg_box_description_box}>
-            <p>{nft.description} 
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum omnis, 
-            sit animi accusantium vitae porro reprehenderit voluptates, sint sapiente, quos 
-            debitis minima officiis et vel? Esse voluptatum nam ducimus facilis?</p>
-            
+            <p>{nft.description}</p>
           </div>
         )}
 
@@ -101,21 +96,18 @@ const NFTDetailsImg = (nft) => {
             <small>2000 x 2000 px.IMAGE(685KB)</small>
             <p>
               <small>Contract Address</small>
-              <br />
-              <br />
+              <br></br>
               {nft.seller}
-              0xF574063f6174B1f5336DAE61BA5A89df4DE399f6
             </p>
             <p>
               <small>Token ID</small>
               &nbsp; &nbsp; {nft.tokenId}
-              200239302
             </p>
           </div>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NFTDetailsImg
+export default NFTDetailsImg;

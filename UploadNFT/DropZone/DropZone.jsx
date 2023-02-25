@@ -7,7 +7,7 @@ import Style from "./DropZone.module.css";
 import images from "../../public/img";
 
 const DropZone = ({
-    title,
+  title,
   heading,
   subHeading,
   name,
@@ -20,25 +20,22 @@ const DropZone = ({
   uploadToIPFS,
   setImage,
 }) => {
+  const [fileUrl, setFileUrl] = useState(null);
 
-    const [fileUrl, setFileUrl] = useState(null);
+  const onDrop = useCallback(async (acceptedFile) => {
+    const url = await uploadToIPFS(acceptedFile[0]);
+    setFileUrl(url);
+    setImage(url);
+    console.log(url);
+  });
 
-    const onDrop = useCallback(async (acceptedFile) => {
-        const url = await uploadToIPFS(acceptedFile[0]);
-        setFileUrl(url);
-        setImage(url);
-        console.log(url);
-      });
-
-
-    const { getRootProps, getInputProps } = useDropzone({
-        onDrop,
-        accept: "image/*",
-        maxSize: 5000000,
-      });
-
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*",
+    maxSize: 5000000,
+  });
   return (
-     <div className={Style.DropZone}>
+    <div className={Style.DropZone}>
       <div className={Style.DropZone_box} {...getRootProps()}>
         <input {...getInputProps()} />
         <div className={Style.DropZone_box_input}>
@@ -105,7 +102,7 @@ const DropZone = ({
         </aside>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default DropZone
+export default DropZone;

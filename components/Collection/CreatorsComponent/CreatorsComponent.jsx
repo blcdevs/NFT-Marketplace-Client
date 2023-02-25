@@ -57,7 +57,7 @@ const CreatorComponent = ({ el, i }) => {
                 alt="profile"
                 width={30}
                 height={30}
-                objectFit="covers"
+                // objectFit="covers"
                 className={Style.daysComponent_box_title_info_profile_img}
               />
 

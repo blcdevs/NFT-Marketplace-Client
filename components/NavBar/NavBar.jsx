@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,7 +14,8 @@ import { Button } from "../componentsindex";
 import images from "../../public/img";
 
 
-
+//IMPORT FROM SMART CONTRACT
+import {NFTMarketplaceContext} from "../../Context/NFTMarketplaceContext"
 
 
 function NavBar() {
@@ -77,6 +78,8 @@ function NavBar() {
     }
   };
 
+  const {currentAccount, connectWallet} = useContext(NFTMarketplaceContext);
+
 
   return (
     <div className={Style.navbar}>
@@ -130,7 +133,16 @@ function NavBar() {
 
               {/* CREATE BUTTON*/}
               <div className={Style.navbar_container_right_button}>
-                <Button btnName="Create" handleClick={() =>{}}/>
+                {currentAccount == "" ? (
+                  <Button btnName="Connect Wallet" handleClick={() => connectWallet()}/> 
+                )
+                : (
+                  <Link href={{pathname: "/upload-nft"}}>
+                    <Button btnName="Create" handleClick={() => {}}/>
+                  </Link>  
+                )
+                                  
+                }
             </div>
             {/*END CREATE BUTTON*/}
 
@@ -168,7 +180,10 @@ function NavBar() {
       {
         openSideMenu && (
           <div className={Style.sideBar}>
-              <SideBar setOpenSideMenu={setOpenSideMenu}/>
+              <SideBar setOpenSideMenu={setOpenSideMenu}
+                currentAccount ={currentAccount}
+                connectWallet ={connectWallet}
+              />
           </div>
         )
       }

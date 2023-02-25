@@ -13,72 +13,70 @@ import images from "../public/img";
 import { Button } from "../components/componentsindex.js";
 import { DropZone } from "../UploadNFT/uploadNFTIndex.js";
 
-const UploadNFTStore = ({ uploadToIPFS, createNFT}) => {
+const UploadNFTStore = ({ uploadToIPFS, createNFT }) => {
+  const [price, setPrice] = useState("");
+  const [active, setActive] = useState(0);
+  const [name, setName] = useState("");
+  const [website, setWebsite] = useState("");
+  const [description, setDescription] = useState("");
+  const [royalties, setRoyalties] = useState("");
+  const [fileSize, setFileSize] = useState("");
+  const [category, setCategory] = useState(0);
+  const [properties, setProperties] = useState("");
+  const [image, setImage] = useState(null);
 
-    const [price, setPrice] = useState("");
-    const [active, setActive] = useState(0);
-    const [name, setName] = useState("");
-    const [website, setWebsite] = useState("");
-    const [description, setDescription] = useState("");
-    const [royalties, setRoyalties] = useState("");
-    const [fileSize, setFileSize] = useState("");
-    const [category, setCategory] = useState(0);
-    const [properties, setProperties] = useState("");
-    const [image, setImage] = useState(null);
+  const router = useRouter();
 
-    const router = useRouter();
-
-
-    const categoryArry = [
-      {
-        image: images.nft_image_1,
-        category: "Sports",
-      },
-      {
-        image: images.nft_image_2,
-        category: "Arts",
-      },
-      {
-        image: images.nft_image_3,
-        category: "Music",
-      },
-      {
-        image: images.nft_image_1,
-        category: "Gaming",
-      },
-      {
-        image: images.nft_image_2,
-        category: "Virtual World",
-      },
-      {
-        image: images.nft_image_3,
-        category: "Photography",
-      },
-    ];
+  const categoryArry = [
+    {
+      image: images.nft_image_1,
+      category: "Sports",
+    },
+    {
+      image: images.nft_image_2,
+      category: "Arts",
+    },
+    {
+      image: images.nft_image_3,
+      category: "Music",
+    },
+    {
+      image: images.nft_image_1,
+      category: "Digital",
+    },
+    {
+      image: images.nft_image_2,
+      category: "Time",
+    },
+    {
+      image: images.nft_image_3,
+      category: "Photography",
+    },
+  ];
 
   return (
     <div className={Style.upload}>
       <DropZone
-          title="JPG, PNG, WEBM , MAX 100MB"
-          heading="Drag & drop file"
-          subHeading="or Browse media on your device"
-          name={name}
-          website={website}
-          description={description}
-          royalties={royalties}
-          fileSize={fileSize}
-          category={category}
-          properties={properties}
-          setImage={setImage}
-          uploadToIPFS={uploadToIPFS}
+        title="JPG, PNG, WEBM , MAX 100MB"
+        heading="Drag & drop file"
+        subHeading="or Browse media on your device"
+        name={name}
+        website={website}
+        description={description}
+        royalties={royalties}
+        fileSize={fileSize}
+        category={category}
+        properties={properties}
+        setImage={setImage}
+        uploadToIPFS={uploadToIPFS}
       />
 
-<div className={Style.upload_box}>
+      <div className={Style.upload_box}>
         <div className={formStyle.Form_box_input}>
           <label htmlFor="nft">Item Name</label>
           <input
             type="text"
-            placeholder="NFT Name"
+            placeholder="Your NFT Name"
             className={formStyle.Form_box_input_userName}
             onChange={(e) => setName(e.target.value)}
           />
@@ -112,7 +110,7 @@ const UploadNFTStore = ({ uploadToIPFS, createNFT}) => {
             id=""
             cols="30"
             rows="6"
-            placeholder="Detail description of your NFT"
+            placeholder="something about yourself in few words"
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <p>
@@ -238,9 +236,8 @@ const UploadNFTStore = ({ uploadToIPFS, createNFT}) => {
           />
         </div>
       </div>
+    </div>
+  );
+};
 
-  </div>
-  )
-}
-
-export default UploadNFTStore
+export default UploadNFTStore;
