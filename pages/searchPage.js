@@ -1,53 +1,47 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 //INTRNAL IMPORT
 import Style from "../styles/searchPage.module.css";
-import { Slider, Brand, Loader } from "../components/componentsindex";
+import { Slider, Brand } from "../components/componentsindex";
 import { SearchBar } from "../searchPage/searchBarIndex";
-import { Filter } from "../components/componentsindex";
-
+import { Filter, Loader } from "../components/componentsindex";
 import { NFTCardTwo, Banner } from "../collectionPage/collectionIndex";
 import images from "../public/img";
 
 //SMART CONTRACT IMPORT
-import { NFTMarketplaceContext } from "../Context/NFTMarketplaceContext";
+import { NFTMarketplaceContext, setError } from "../Context/NFTMarketplaceContext";
 
 const searchPage = () => {
-  const { fetchNFTs, setError, currentAccount } = useContext(
-    NFTMarketplaceContext
-  );
-  const [nfts, setNfts] = useState([]);
-  const [nftsCopy, setNftsCopy] = useState([]);
+  const { fetchNFTs } = useContext(NFTMarketplaceContext);
+  const [nfts, setNFTs] = useState([]);
+  const [nftsCopys, setNftCopys] = useState([]);
 
   useEffect(() => {
     try {
-      // if (currentAccount) {
       fetchNFTs().then((items) => {
-        setNfts(items.reverse());
-        setNftsCopy(items);
-        console.log(nfts);
+        setNFTs(items.reverse());
+        setNftCopys(items);
       });
-      // }
     } catch (error) {
-      setError("Please reload the browser", error);
+      console.log("Please reload the browser", error);
     }
   }, []);
 
+  //Seacrh NFT Function
   const onHandleSearch = (value) => {
-    const filteredNFTS = nfts.filter(({ name }) =>
-      name.toLowerCase().includes(value.toLowerCase())
-    );
+    const filteredNFTS = nfts.filter(({ name }) => name.toLowerCase().includes(value.toLowerCase()));
 
-    if (filteredNFTS.length === 0) {
-      setNfts(nftsCopy);
+    if (filteredNFTS.length == 0) {
+      setNFTs(nftsCopys);
     } else {
-      setNfts(filteredNFTS);
+      setNFTs(filteredNFTS);
     }
   };
 
+  //Clear search NFT function
   const onClearSearch = () => {
-    if (nfts.length && nftsCopy.length) {
-      setNfts(nftsCopy);
+    if (nfts.length && nftsCopys.length) {
+      setNFTs(nftsCopys);
     }
   };
 
@@ -64,10 +58,7 @@ const searchPage = () => {
   return (
     <div className={Style.searchPage}>
       <Banner bannerImage={images.creatorbackground2} />
-      <SearchBar
-        onHandleSearch={onHandleSearch}
-        onClearSearch={onClearSearch}
-      />
+      <SearchBar onHandleSearch={onHandleSearch} onClearSearch={onClearSearch} />
       <Filter />
       {nfts.length == 0 ? <Loader /> : <NFTCardTwo NFTData={nfts} />}
       <Slider />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { HiOutlineMail } from "react-icons/hi";
 import { MdOutlineHttp, MdOutlineContentCopy } from "react-icons/md";
 import {
@@ -10,8 +10,12 @@ import {
 //INTERNAL IMPORT
 import Style from "./Form.module.css";
 import { Button } from "../../components/componentsindex.js";
+import {NFTMarketplaceContext} from "../../Context/NFTMarketplaceContext"
+
 
 const Form = () => {
+  const {currentAccount, connectWallet} = useContext(NFTMarketplaceContext);
+
   return (
     <div className={Style.Form}>
       <div className={Style.Form_box}>
@@ -95,8 +99,9 @@ const Form = () => {
               </div>
               <input
                 type="text"
-                placeholder="0x54d8e8944a2c0e08330aad41582927BF8D4A26D9"
+                value={currentAccount}
               />
+
               <div className={Style.Form_box_input_box_icon}>
                 <MdOutlineContentCopy />
               </div>

@@ -33,7 +33,7 @@ const reSellToken = () => {
   const resell = async () => {
     try {
       await createSale(tokenURI, price, true, id);
-      router.push("/author");
+      router.push("/author-profile");
     } catch (error) {
       console.log("Error while resell", error);
     }

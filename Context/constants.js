@@ -1,7 +1,7 @@
-// deployed contract Address(MINTAVAX) 0x8A1EE429B9570b45055b3Ae365d2e1bBE2103bb9
+// deployed contract Address(MINTAVAX) 0x7edBD833314b3184e7b90EDD3b6aCF6e34a42609
 
 import nftMarketplace from "./NFTMarketplace.json";
 
 
-export const NFTMarketplaceAddress = "0x8A1EE429B9570b45055b3Ae365d2e1bBE2103bb9";
+export const NFTMarketplaceAddress = "0x7edBD833314b3184e7b90EDD3b6aCF6e34a42609";
 export const NFTMarketplaceABI = nftMarketplace.abi;

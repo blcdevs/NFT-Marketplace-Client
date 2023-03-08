@@ -8,12 +8,14 @@ import {TiSocialFacebook, TiSocialLinkedin, TiSocialTwitter, TiSocialYoutube, Ti
 import Style from "./SideBar.module.css";
 import images from "../../../public/img";
 import Button from "../../Button/Button";
+import { useRouter } from "next/router";
 
 function SideBar({setOpenSideMenu, currentAccount, connectWallet}) {
 
   // USESTATE
 const [openDiscover, setOpenDiscover] = useState(false);
 const [openHelp, setOpenHelp] = useState(false);
+const router = useRouter();
 
 const discover = [
   {

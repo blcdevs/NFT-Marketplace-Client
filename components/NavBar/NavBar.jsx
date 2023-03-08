@@ -10,7 +10,7 @@ import {CgMenuLeft, CgMenuRight} from "react-icons/cg";
 //INTERNAL IMPORT
 import Style from "./NavBar.module.css";
 import {Discover, Helper, Notification, Profile, SideBar} from "./index";
-import { Button } from "../componentsindex";
+import { Button, Error } from "../componentsindex";
 import images from "../../public/img";
 
 
@@ -78,7 +78,7 @@ function NavBar() {
     }
   };
 
-  const {currentAccount, connectWallet} = useContext(NFTMarketplaceContext);
+  const {currentAccount, connectWallet, openError} = useContext(NFTMarketplaceContext);
 
 
   return (
@@ -158,8 +158,8 @@ function NavBar() {
                 className={Style.navbar_container_right_profile}
               />
 
-              {profile && <Profile/>}
-               </div>
+                {profile && <Profile currentAccount={currentAccount} />}
+              </div>
             </div>
             {/*END CREATE USER*/}
 
@@ -185,9 +185,9 @@ function NavBar() {
                 connectWallet ={connectWallet}
               />
           </div>
-        )
-      }
-
+        )}
+      
+          {openError && <Error/>}
 
     </div>
   )

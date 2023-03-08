@@ -1,85 +1,71 @@
-import React from 'react';
+import React from "react";
 import Image from "next/image";
-import {FaUserAlt, FaReadme, FaUserEdit, FaRegImage} from "react-icons/fa";
-import {MdHelpCenter} from "react-icons/md";
-import {TbDownloadOff, TbDownload} from "react-icons/tb";
+import { FaUserAlt, FaRegImage, FaUserEdit } from "react-icons/fa";
+import { MdHelpCenter } from "react-icons/md";
+import { TbDownloadOff, TbDownload } from "react-icons/tb";
 import Link from "next/link";
 
+//INTERNAL IMPORT
+import Style from "./Profile.module.css";
 import images from "../../../public/img";
 
-//INTERNAL IMPORTS
-import Style from "./Profile.module.css";
-
-function Profile() {
+const Profile = ({ currentAccount }) => {
   return (
     <div className={Style.profile}>
       <div className={Style.profile_account}>
-        <Image 
-        src={images.user1} 
-        alt="User Profile"
-        width={50}
-        height={50}
-        className={Style.profile_account_img}
+        <Image
+          src={images.user1}
+          alt="user profile"
+          width={50}
+          height={50}
+          className={Style.profile_account_img}
         />
 
         <div className={Style.profile_account_info}>
-          <p>BLC Dev</p>
-          <small>x03QI4U...O93N2F</small>
+          <p>BLD Dev</p>
+          <small>{currentAccount.slice(20, 50)}...</small>
         </div>
-
       </div>
 
       <div className={Style.profile_menu}>
         <div className={Style.profile_menu_one}>
           <div className={Style.profile_menu_one_item}>
-            <FaUserAlt/>
+            <FaUserAlt />
             <p>
-              <Link href={{pathname: '/myprofile'}}>My Profile</Link>
+              <Link href={{ pathname: "/author-profile" }}>My Profile</Link>
             </p>
           </div>
-
           <div className={Style.profile_menu_one_item}>
-            <FaRegImage/>
+            <FaRegImage />
             <p>
-              <Link href={{pathname: '/my-items'}}>My Items</Link>
+              <Link href={{ pathname: "/author-profile" }}>My Items</Link>
             </p>
           </div>
- 
           <div className={Style.profile_menu_one_item}>
-            <FaUserEdit/>
+            <FaUserEdit />
             <p>
-              <Link href={{pathname: '/edit-profile'}}>Edit Profile</Link>
+              <Link href={{ pathname: "/account-setting" }}>Edit Profile</Link>
             </p>
           </div>
         </div>
 
         <div className={Style.profile_menu_two}>
           <div className={Style.profile_menu_one_item}>
-            <MdHelpCenter/>
+            <MdHelpCenter />
             <p>
-              <Link href={{pathname: '/help'}}>Help Center</Link>
+              <Link href={{ pathname: "/contact-us" }}>Help</Link>
             </p>
           </div>
-
           <div className={Style.profile_menu_one_item}>
-            <TbDownload/>
+            <TbDownload />
             <p>
-              <Link href={{pathname: '/disconnect'}}>Disconnect</Link>
-            </p>
-          </div>
-
-          <div className={Style.profile_menu_one_item}>
-            <FaUserEdit/>
-            <p>
-              <Link href={{pathname: '/edit-profile'}}>Edit Profile</Link>
+              <Link href={{ pathname: "/about-us" }}>About Us</Link>
             </p>
           </div>
         </div>
-
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
