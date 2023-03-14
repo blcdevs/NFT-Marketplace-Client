@@ -5,6 +5,9 @@
 
 * The project allows users to create, buy, and sell non-fungible tokens (NFTs) on the Ethereum and EVM compatiable blockchains. The platform is designed to be user-friendly and accessible to both novice and experienced users.
 
+#### Smart Contract https://github.com/blcdevs/nft-marketplace-contract
+
+
 ## Features
 
 #### Some of the key features of the marketplace include:
